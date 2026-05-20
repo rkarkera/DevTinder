@@ -1,0 +1,123 @@
+const validator = require("validator");
+const User = require("../models/users");
+
+const validateSignupData = async (req,res,next) => {
+    try {
+        const {
+      firstName,
+      lastName,
+      email,
+      password,
+      age,
+      gender,
+      skills,
+      about
+    } = req.body;
+
+    
+
+    if (!firstName || firstName.length < 3) {
+      return res.status(400).json({
+        message: "First name must be at least 3 characters",
+      });
+    }
+
+    if (!email || !validator.isEmail(email)) {
+      return res.status(400).json({
+        message: "Invalid email",
+      });
+    }
+
+    if (!password || !validator.isStrongPassword(password)) {
+      return res.status(400).json({
+        message:
+          "Password must contain uppercase, lowercase, number and symbol",
+      });
+    }
+
+    if (age < 18) {
+      return res.status(400).json({
+        message: "Age must be greater than 18",
+      });
+    }
+
+    const allowedGender = ["male", "female", "other"];
+
+    if (!allowedGender.includes(gender)) {
+      return res.status(400).json({
+        message: "Invalid gender",
+      });
+    }
+
+    if (skills && !Array.isArray(skills)) {
+      return res.status(400).json({
+        message: "Skills must be an array",
+      });
+    }
+
+    if (about && about.length < 3) {
+      return res.status(400).json({
+        message: "about must be at least 3 characters",
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: "Email already exists",
+      });
+    } else {
+        next();
+    }
+    } catch (error) {
+        res.status(400).json({message:"Something went wrong"});
+    }
+    
+}
+
+const validateLoginData = (req,res,next) => {
+    try {
+      const { emailId, password } = req.body;
+
+  if (!emailId || !validator.isEmail(emailId)) {
+      return res.status(400).json({
+        message: "Invalid email",
+      });
+    }
+   
+
+    if (!password || !validator.isStrongPassword(password)) {
+      return res.status(400).json({
+        message:
+          "Password must contain uppercase, lowercase, number and symbol",
+      });
+    }
+
+    next();
+
+    } catch(err) {
+      res.status(400).json({message:"Something went wrong"});
+    }
+  
+
+}
+
+const validateEditProfileData = (req) => {
+  const allowedEditFields = [
+    "firstname",
+    "lastname",
+    "email",
+    "photoUrl",
+    "gender",
+    "age",
+    "about",
+    "skills",
+  ];
+
+  const isEditAllowed = Object.keys(req).every((el) => allowedEditFields.includes(el));
+
+  return isEditAllowed;
+};
+
+module.exports = {validateSignupData, validateEditProfileData, validateLoginData}
