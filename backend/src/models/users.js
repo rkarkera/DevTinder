@@ -60,16 +60,17 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+const JWT_PSWD = process.env.JWT_PSWD;
+
 userSchema.methods.getJwt = async function () {
   const user = this;
-  const token = jwt.sign({ id: user.id }, "shhhhh", { expiresIn: "1d" });
+  const token = jwt.sign({ id: user.id }, JWT_PSWD, { expiresIn: "1d" });
   return token;
 };
 
 userSchema.methods.comparePassword = async function (userPassword) {
   const user = this;
   const isPasswordValid = await bcrypt.compare(userPassword, user.password);
-  console.log(isPasswordValid);
   return isPasswordValid;
 };
 
