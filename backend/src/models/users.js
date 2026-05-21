@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema(
     photoUrl: {
       type: String,
       default:
-        "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-profile-2004239303",
+        "https://media.istockphoto.com/id/1220827245/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette.jpg?s=1024x1024&w=is&k=20&c=o68EDsTw0pgAR8guOwhIdAQ1zOIok3XuOhAKiAgRhwk=",
     },
     about: {
       type: String,
@@ -60,11 +60,11 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-const JWT_PSWD = process.env.JWT_PSWD;
+
 
 userSchema.methods.getJwt = async function () {
   const user = this;
-  const token = jwt.sign({ id: user.id }, JWT_PSWD, { expiresIn: "1d" });
+  const token = jwt.sign({ id: user.id }, process.env.JWT_PSWD, { expiresIn: "1d" });
   return token;
 };
 

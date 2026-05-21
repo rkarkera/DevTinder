@@ -41,7 +41,7 @@ router.post("/login", validateLoginData, async (req, res) => {
     if (isPasswordValid) {
       const token = await user.getJwt();
       res.cookie("token", token,{expires: new Date(Date.now() + 8 * 3600000)});
-      res.status(200).json({ message: "Login Successfull" });
+      res.status(200).json({ message: "Login Successfull",user });
     } else {
       throw new Error("Invalid Credentials");
     }
