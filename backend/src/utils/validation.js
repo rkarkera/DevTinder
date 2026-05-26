@@ -87,10 +87,10 @@ const validateLoginData = (req,res,next) => {
     }
    
 
-    if (!password || !validator.isStrongPassword(password)) {
+    if (!password ) {
       return res.status(400).json({
         message:
-          "Password must contain uppercase, lowercase, number and symbol",
+          "wrong credentials",
       });
     }
 
@@ -105,15 +105,37 @@ const validateLoginData = (req,res,next) => {
 
 const validateEditProfileData = (req) => {
   const allowedEditFields = [
-    "firstname",
-    "lastname",
-    "email",
+    "firstName",
+    "lastName",
     "photoUrl",
     "gender",
     "age",
     "about",
     "skills",
   ];
+
+   if (!req.firstName || req.firstName.length < 3) {
+     throw new Error("First name must be at least 3 characters");
+    }
+
+    
+    if (req.age < 18) {
+      throw new Error("Age must be greater than 18",);
+    }
+
+    const allowedGender = ["male", "female", "other"];
+
+    if (!allowedGender.includes(req.gender)) {
+      throw new Error("Invalid gender");
+    }
+
+    if (req.skills && !Array.isArray(req.skills)) {
+      throw new Error("Skills must be an array");
+    }
+
+    if (req.about && req.about.length < 3) {
+      throw new Error("About must be at least 3 characters");
+    }
 
   const isEditAllowed = Object.keys(req).every((el) => allowedEditFields.includes(el));
 

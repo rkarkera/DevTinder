@@ -33,7 +33,10 @@ router.post("/login", validateLoginData, async (req, res) => {
     const { emailId, password } = req.body;
     const user = await User.findOne({ email: emailId });
     if (!user) {
-      throw new Error("Invalid Credentials1");
+       return res.status(400).json({
+        message:
+          "Invalid credentials",
+      });
     }
 
     const isPasswordValid = await user.comparePassword(password);
@@ -43,7 +46,10 @@ router.post("/login", validateLoginData, async (req, res) => {
       res.cookie("token", token,{expires: new Date(Date.now() + 8 * 3600000)});
       res.status(200).json({ message: "Login Successfull",user });
     } else {
-      throw new Error("Invalid Credentials");
+      res.status(400).json({
+        message:
+          "Invalid credentials",
+      });
     }
   } catch (err) {
     res.status(400).json({ message: "Something went wrong", err: err.message });

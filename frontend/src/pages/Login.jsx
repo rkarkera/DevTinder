@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("rachankarkera300@gmail.com");
+  const [password, setPassword] = useState("Rachan@123");
+  const [error,setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ const Login = () => {
       dispatch(addUser(data.user));
       navigate("/feed");
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message);
+      console.log(error.response?.data?.message);
     }
   };
 
@@ -53,6 +55,7 @@ const Login = () => {
               />
             </fieldset>
           </div>
+           {error && <p className="text-red-500">{error}</p> }
           <div className="card-actions justify-center m-2">
             <button className="btn btn-primary" onClick={handleSubmit}>
               Login

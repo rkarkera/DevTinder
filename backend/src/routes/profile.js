@@ -16,18 +16,25 @@ router.patch("/profile/edit", userAuth, async(req,res) => {
   try {
 
     if(!validateEditProfileData(req.body)) {
-       throw new Error("Invalid Edit Request");
+      return res.status(400).json({message:"Invalid Edit Request"});
     }
   
     const loggedInUser = req.user;
 
     Object.keys(req.body).forEach((el) => loggedInUser[el] = req.body[el]);
 
-      await loggedInUser.save();
-    res.status(200).json({message:"User updated successfully"});
+    const user =  await loggedInUser.save();
+
+     const userObj = user.toObject();
+         delete userObj.password;
+    delete userObj.emailId;
+
+    res.status(200).json({message:"User updated successfully",data: userObj});
+   
+   
 
   } catch (error) {
-     res.status(400).json({err:error.message});
+     res.status(400).json({message:error.message});
   }
 })
 module.exports = router;
