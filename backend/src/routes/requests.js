@@ -19,9 +19,6 @@ router.post("/request/send/:status/:userId", userAuth, async (req, res) => {
 
     const validToUser = await User.findById(toUserId);
 
-    console.log(validToUser);
-
-
     if (!validToUser) {
       res.status(404).json({ message: "User not found" });
       return;

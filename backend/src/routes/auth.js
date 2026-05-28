@@ -22,6 +22,8 @@ router.post("/signup", validateSignupData, async (req, res) => {
     });
    user = await user.save();
      user = await User.findById(user._id).select("-password"); 
+     const token = await user.getJwt();
+      res.cookie("token", token,{expires: new Date(Date.now() + 8 * 3600000)});
     res.status(201).json({ message: "User Added Successfully", user });
   } catch (err) {
     res.status(401).json({ message: "Failed to add user", err: err.message });
@@ -30,8 +32,8 @@ router.post("/signup", validateSignupData, async (req, res) => {
 
 router.post("/login", validateLoginData, async (req, res) => {
   try {
-    const { emailId, password } = req.body;
-    const user = await User.findOne({ email: emailId });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     if (!user) {
        return res.status(400).json({
         message:

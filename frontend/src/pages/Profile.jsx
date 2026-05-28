@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import FeedCard from "../components/FeedCard";
 import axios from "axios";
 import { addUser } from "../features/userSlice";
+import Toaster from "../components/Toaster";
+
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
@@ -19,7 +22,7 @@ const Profile = () => {
   });
   const [error, setError] = useState();
   const [showToast, setShowToast] = useState(false);
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -140,11 +143,7 @@ const Profile = () => {
         <FeedCard user={userProfile} />
       </div>
       {showToast && (
-        <div className="toast toast-top toast-center fixed z-50">
-          <div className="alert alert-info">
-            <span>Profile updated Successfully</span>
-          </div>
-        </div>
+        <Toaster msg={"Profile updated Successfully"}/>
       )}
     </>
   );

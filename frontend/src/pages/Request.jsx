@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequests } from "../features/requestsSlice";
 import UserCard from "../components/UserCard";
+import Toaster from "../components/Toaster";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Request = () => {
@@ -77,6 +78,7 @@ const Request = () => {
                     user={user.fromUserId}
                     showActions={true}
                     reviewRequest={reviewRequest}
+                    id={user._id}
                   />
                 ))}
               </div>
@@ -85,11 +87,7 @@ const Request = () => {
         )}
       </div>
       {showToast && (
-        <div className="toast toast-top toast-center fixed z-50">
-          <div className="alert alert-info">
-            <span>{toastMessage}</span>
-          </div>
-        </div>
+        <Toaster msg={toastMessage}/>
       )}
     </div>
   );

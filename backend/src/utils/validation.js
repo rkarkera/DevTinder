@@ -35,7 +35,7 @@ const validateSignupData = async (req,res,next) => {
       });
     }
 
-    if (age < 18) {
+    if (!age || age < 18) {
       return res.status(400).json({
         message: "Age must be greater than 18",
       });
@@ -78,9 +78,9 @@ const validateSignupData = async (req,res,next) => {
 
 const validateLoginData = (req,res,next) => {
     try {
-      const { emailId, password } = req.body;
+      const { email, password } = req.body;
 
-  if (!emailId || !validator.isEmail(emailId)) {
+  if (!email || !validator.isEmail(email)) {
       return res.status(400).json({
         message: "Invalid email",
       });

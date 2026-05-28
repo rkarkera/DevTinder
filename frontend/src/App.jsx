@@ -7,6 +7,8 @@ import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Connection from "./pages/Connection";
 import Request from "./pages/Request";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 const App = () => {
   return (
@@ -14,11 +16,11 @@ const App = () => {
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Body />}>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/feed" element={<Feed />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/connections" element={<Connection />}/>
-        <Route path="/requests" element={<Request />}/>
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>}/>
+        <Route path="/feed" element={<ProtectedRoute><Feed /></ProtectedRoute>}/>
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+        <Route path="/connections" element={<ProtectedRoute><Connection /></ProtectedRoute>}/>
+        <Route path="/requests" element={<ProtectedRoute><Request /></ProtectedRoute>}/>
         </Route>
       </Routes>
     </BrowserRouter>

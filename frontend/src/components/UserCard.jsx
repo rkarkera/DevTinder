@@ -1,4 +1,4 @@
-const UserCard = ({ user, showActions = false, reviewRequest }) => {
+const UserCard = ({ user, showActions = false, reviewRequest, id }) => {
   return (
     <div className="card bg-base-100 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <div className="card-body">
@@ -43,11 +43,11 @@ const UserCard = ({ user, showActions = false, reviewRequest }) => {
 
         {showActions && (
           <div className="card-actions mt-6 flex-col gap-3 sm:flex-row sm:justify-end">
-            <button className="btn btn-error btn-outline w-full sm:w-auto" onClick={() => reviewRequest("rejected",user._id)}>
+            <button className="btn btn-error btn-outline w-full sm:w-auto" onClick={() => reviewRequest("rejected",id)}>
               Reject
             </button>
 
-            <button className="btn btn-success w-full sm:w-auto text-white" onClick={() => reviewRequest('accepted',user._id)}>
+            <button className="btn btn-success w-full sm:w-auto text-white" onClick={() => reviewRequest('accepted',id)}>
               Accept
             </button>
           </div>
