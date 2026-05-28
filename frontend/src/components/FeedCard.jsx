@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { removeFeed } from "../features/feedSlice";
 import Toaster from "./Toaster";
 import { useState } from "react";
+import { API_URL } from "../utils/constant";
 
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 const FeedCard = ({ user }) => {
   const { _id, firstName, lastName, age, about, photoUrl, gender } = user;

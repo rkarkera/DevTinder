@@ -5,8 +5,7 @@ import { addUser } from "../features/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Toaster from "../components/Toaster";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "../utils/constant";
 
 const Login = () => {
   const [email, setEmail] = useState("");

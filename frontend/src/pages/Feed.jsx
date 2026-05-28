@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../features/feedSlice";
 import FeedCard from "../components/FeedCard";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "../utils/constant";
 
 const Feed = () => {
   const dispatch = useDispatch();

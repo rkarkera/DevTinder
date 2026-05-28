@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequests } from "../features/requestsSlice";
 import UserCard from "../components/UserCard";
 import Toaster from "../components/Toaster";
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "../utils/constant";
 
 const Request = () => {
   const dispatch = useDispatch();

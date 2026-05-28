@@ -4,9 +4,7 @@ import FeedCard from "../components/FeedCard";
 import axios from "axios";
 import { addUser } from "../features/userSlice";
 import Toaster from "../components/Toaster";
-
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL } from "../utils/constant";
 
 const Profile = () => {
   const user = useSelector((store) => store.user);

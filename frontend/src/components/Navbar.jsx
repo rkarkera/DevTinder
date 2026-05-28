@@ -5,8 +5,9 @@ import { removeUser } from "../features/userSlice";
 import { removeFeed } from "../features/feedSlice";
 import { removeConnections } from "../features/connectionsSlice";
 import { removeRequests } from "../features/requestsSlice";
+import { API_URL } from "../utils/constant";
 
-const API_URL = import.meta.env.VITE_API_URL;
+
 const Navbar = () => {
 
   const dispatch = useDispatch();
