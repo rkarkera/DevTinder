@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 const PublicRoute = ({ children }) => {
 
-  const user = useSelector((store) => store.user);
+  const { user } = useSelector((store) => store.user);
 
   if (user) {
     return <Navigate to="/feed" />;

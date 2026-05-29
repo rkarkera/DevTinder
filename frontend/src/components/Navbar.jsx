@@ -28,7 +28,7 @@ const Navbar = () => {
      
   }
 
-  const user = useSelector((store) => store.user);
+  const {user} = useSelector((store) => store.user);
   return (
     <div className=" z-10 navbar bg-base-300 shadow-sm sticky top-0">
       <div className="flex-1">

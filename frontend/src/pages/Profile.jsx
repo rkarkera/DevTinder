@@ -7,7 +7,7 @@ import Toaster from "../components/Toaster";
 import { API_URL } from "../utils/constant";
 
 const Profile = () => {
-  const user = useSelector((store) => store.user);
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const [userProfile, setUserProfile] = useState({
