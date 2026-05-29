@@ -9,6 +9,7 @@ import Connection from "./pages/Connection";
 import Request from "./pages/Request";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import Home from "./components/Home";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Body />}>
+        <Route index element={<Home />} />
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>}/>
         <Route path="/feed" element={<ProtectedRoute><Feed /></ProtectedRoute>}/>
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
