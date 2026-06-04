@@ -1,20 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import Body from "./pages/Body";
-import Login from "./pages/Login";
 import store from "./app/store";
-import Feed from "./pages/Feed";
-import Profile from "./pages/Profile";
-import Connection from "./pages/Connection";
-import Request from "./pages/Request";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import Home from "./components/Home";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import RefundPolicy from "./pages/RefundPolicy";
-import ContactUs from "./pages/ContactUs";
-import Premium from "./pages/Premium";
+import {
+  Body,
+  Connection,
+  ContactUs,
+  Feed,
+  Login,
+  PageNotFound,
+  Premium,
+  PrivacyPolicy,
+  Profile,
+  RefundPolicy,
+  TermsOfService,
+  Request
+} from "./pages";
+
 
 const App = () => {
   return (
@@ -75,6 +79,7 @@ const App = () => {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -18,8 +18,8 @@ router.post("/payment/create", userAuth, async (req, res) => {
       currency: "INR",
       receipt: "receipt#1",
       notes: {
-        firstName: "firstName",
-        lastName: "lastName",
+        firstName,
+        lastName,
         packageType: type,
       },
     });
@@ -28,7 +28,7 @@ router.post("/payment/create", userAuth, async (req, res) => {
       userId: _id,
       orderId: order.id,
       status: order.status,
-      amount: order.amount,
+      amount: order.amount / 100,
       currency: order.currency,
       receipt: order.receipt,
       notes: order.notes,
@@ -67,8 +67,6 @@ router.post("/payment/webhook", async (req, res) => {
     user.isPremium = true;
     user.package = payment.notes.packageType;
     await user.save();
-    
-    console.log(user);
 
     res.status(200).json({msg:"Webhook received successfully"});
   } catch (error) {
