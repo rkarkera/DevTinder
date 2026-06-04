@@ -7,7 +7,7 @@ import { API_URL } from "../utils/constant";
 
 
 
-const FeedCard = ({ user }) => {
+const FeedCard = ({ user , isPreview=false}) => {
   const { _id, firstName, lastName, age, about, photoUrl, gender } = user;
   const dispatch = useDispatch();
 
@@ -37,24 +37,34 @@ const FeedCard = ({ user }) => {
     }
   };
   return (
-    <div className="card bg-base-300 w-96 shadow-sm">
-      <figure className="px-10 pt-10">
-        <img src={photoUrl} alt="user photo" className="rounded-xl" />
+    <div className="card bg-base-300 w-full max-w-md shadow-xl">
+      <figure className="px-6 pt-6">
+        <img
+  src={photoUrl}
+  alt="user photo"
+  className="rounded-xl h-72 w-full object-cover"
+/>
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{`${firstName} ${lastName}`}</h2>
-        <p>{about}</p>
-        <p>{`Age : ${age}  Gender: ${gender}`}</p>
+        <p className="text-sm text-base-content/80 wrap-break-word">
+  {about}
+</p>
+        <p className="font-medium">
+  Age: {age} • {gender}
+</p>
         <div className="card-actions my-3">
           <button
             className="btn btn-primary"
             onClick={() => sendConnection("ignored")}
+            disabled={isPreview}
           >
             Ignore
           </button>
           <button
             className="btn btn-secondary"
             onClick={() => sendConnection("interested")}
+            disabled={isPreview}
           >
             Interested
           </button>

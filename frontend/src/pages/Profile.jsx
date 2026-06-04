@@ -49,8 +49,8 @@ const Profile = () => {
   };
   return (
     <>
-      <div className="relative flex justify-center gap-6 mt-5 mb-10">
-        <div className="card bg-base-300 w-96 shadow-sm">
+      <div className="max-w-6xl mx-auto flex flex-col xl:flex-row items-center xl:items-start justify-center gap-8 px-4 py-6 pb-32">
+        <div className="card bg-base-300 w-full max-w-md shadow-xl">
           <div className="card-body">
             <h2 className="card-title justify-center">Profile</h2>
             <div>
@@ -58,7 +58,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">First Name:</legend>
                 <input
                   type="text"
-                  className="input"
+                  className="input w-full"
                   name="firstName"
                   onChange={handleChange}
                   value={userProfile.firstName}
@@ -70,7 +70,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">Last Name:</legend>
                 <input
                   type="text"
-                  className="input"
+                  className="input w-full"
                   name="lastName"
                   onChange={handleChange}
                   value={userProfile.lastName}
@@ -82,7 +82,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">Photo URL:</legend>
                 <input
                   type="text"
-                  className="input"
+                  className="input w-full"
                   name="photoUrl"
                   onChange={handleChange}
                   value={userProfile.photoUrl}
@@ -94,7 +94,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">Age</legend>
                 <input
                   type="text"
-                  className="input"
+                  className="input w-full"
                   name="age"
                   onChange={handleChange}
                   value={userProfile.age}
@@ -106,7 +106,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">Gender:</legend>
 
                 <select
-                  className="select"
+                  className="select w-full"
                   name="gender"
                   onChange={handleChange}
                   value={userProfile.gender}
@@ -123,7 +123,7 @@ const Profile = () => {
                 <legend className="fieldset-legend">About:</legend>
                 <input
                   type="text"
-                  className="input"
+                  className="input w-full"
                   name="about"
                   onChange={handleChange}
                   value={userProfile.about}
@@ -138,7 +138,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <FeedCard user={userProfile} />
+        <FeedCard user={userProfile} isPreview={true}/>
       </div>
       {showToast && (
         <Toaster msg={"Profile updated Successfully"}/>
