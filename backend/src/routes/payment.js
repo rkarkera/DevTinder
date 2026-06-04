@@ -67,6 +67,8 @@ router.post("/payment/webhook", async (req, res) => {
     user.isPremium = true;
     user.package = payment.notes.packageType;
     await user.save();
+    
+    console.log(user);
 
     res.status(200).json({msg:"Webhook received successfully"});
   } catch (error) {
