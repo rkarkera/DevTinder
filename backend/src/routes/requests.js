@@ -4,6 +4,8 @@ const router = express.Router();
 const Request = require("../models/requests");
 const User = require("../models/users");
 
+const sendEmail = require("../utils/sendEmail");
+
 router.post("/request/send/:status/:userId", userAuth, async (req, res) => {
   try {
     const { userId, status } = req.params;
@@ -38,6 +40,7 @@ router.post("/request/send/:status/:userId", userAuth, async (req, res) => {
 
     const connectionRequest = new Request({ fromUserId, toUserId, status });
     const data = await connectionRequest.save();
+
 
     res.status(200).json({ message: status == "interested" ? "Connection sent successfully" : "Connection ignored" , data });
   } catch (err) {
