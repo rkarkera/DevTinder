@@ -8,7 +8,10 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/requests");
 const userRouter = require("./routes/users");
 const paymentRouter = require("./routes/payment");
+const chatRouter = require("./routes/chat");
 const cors = require("cors");
+const http = require("http");
+const initializeSocket = require("./utils/socket");
 
 
 const app = express();
@@ -28,13 +31,17 @@ app.use("/",profileRouter);
 app.use("/",requestRouter);
 app.use("/",userRouter);
 app.use("/",paymentRouter);
+app.use("/",chatRouter);
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 const PORT = process.env.PORT;
 
 connectDb()
   .then(() => {
     console.log("Database connection Successfull");
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log("Server is running on port 5000");
     });
   })

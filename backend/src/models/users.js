@@ -42,12 +42,12 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
-    isPremium : {
-       type:Boolean,
-       default:false
+    isPremium: {
+      type: Boolean,
+      default: false,
     },
-    package : {
-      type:String
+    package: {
+      type: String,
     },
     photoUrl: {
       type: String,
@@ -61,17 +61,21 @@ const userSchema = new mongoose.Schema(
     skills: {
       type: [String],
     },
+    lastSeen: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     timestamps: true,
   },
 );
 
-
-
 userSchema.methods.getJwt = async function () {
   const user = this;
-  const token = jwt.sign({ id: user.id }, process.env.JWT_PSWD, { expiresIn: "1d" });
+  const token = jwt.sign({ id: user.id }, process.env.JWT_PSWD, {
+    expiresIn: "1d",
+  });
   return token;
 };
 

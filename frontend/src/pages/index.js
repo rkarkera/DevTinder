@@ -10,3 +10,4 @@ export { default as RefundPolicy } from "./RefundPolicy";
 export { default as ContactUs } from "./ContactUs";
 export { default as Premium } from "./Premium";
 export { default as PageNotFound } from "./PageNotFound";
+export { default as Chat } from "./Chat";

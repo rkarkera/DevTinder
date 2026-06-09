@@ -8,20 +8,20 @@ import { API_URL } from "../utils/constant";
 const Connection = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connections);
-  const fetchConnections = async () => {
-    try {
-      const { data } = await axios.get(`${API_URL}/user/connections`, {
-        withCredentials: true,
-      });
-      dispatch(addConnections(data));
-    } catch (error) {
-      console.error(error.response?.data?.message);
-    }
-  };
+  // const fetchConnections = async () => {
+  //   try {
+  //     const { data } = await axios.get(`${API_URL}/user/connections`, {
+  //       withCredentials: true,
+  //     });
+  //     dispatch(addConnections(data));
+  //   } catch (error) {
+  //     console.error(error.response?.data?.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchConnections();
-  }, []);
+  // useEffect(() => {
+  //   fetchConnections();
+  // }, []);
   return (
     <div className="min-h-screen bg-base-200 px-4 py-8 md:px-8">
       <div className="mx-auto max-w-7xl">

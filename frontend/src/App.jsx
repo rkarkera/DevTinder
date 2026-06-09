@@ -16,7 +16,8 @@ import {
   Profile,
   RefundPolicy,
   TermsOfService,
-  Request
+  Request,
+  Chat
 } from "./pages";
 
 
@@ -78,7 +79,8 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/contact-us" element={<ContactUs/> } />
+            <Route path="/chat" element={<Chat />}  />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

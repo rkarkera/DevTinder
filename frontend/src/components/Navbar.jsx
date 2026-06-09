@@ -37,9 +37,9 @@ const Navbar = () => {
         </Link>
       </div>
       {user && (
-        <div className="flex gap-2 ">
+        <div className="flex gap-2 items-center flex-non ">
           <div className=" flex items-center">
-            <h3>Welcome, {user.firstName}</h3>
+            <h3 className="hidden md:block">Welcome, {user.firstName}</h3>
           </div>
           <div className="dropdown dropdown-end mr-5">
             <div
@@ -65,7 +65,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1000 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <Link to="/profile" className="justify-between">
@@ -80,6 +80,9 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to="/requests">Requests</Link>
+              </li>
+              <li>
+                <Link to="/chat">Chat</Link>
               </li>
               <li>
                 <a onClick={logout}>Logout</a>
