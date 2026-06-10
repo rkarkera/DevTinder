@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../features/connectionsSlice";
 import UserCard from "../components/UserCard";
 import { API_URL } from "../utils/constant";
+import { Link } from "react-router-dom";
 
 const Connection = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Connection = () => {
               connect with amazing people.
             </p>
 
-            <button className="btn btn-primary mt-6">Explore Users</button>
+           <Link to={"/feed"}><button className="btn btn-primary mt-6">Explore People</button></Link> 
           </div>
         ) : (
           <div className="min-h-screen bg-base-200 px-4 py-8 md:px-8">
